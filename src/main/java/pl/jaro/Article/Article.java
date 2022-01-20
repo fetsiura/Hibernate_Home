@@ -4,14 +4,14 @@ package pl.jaro.Article;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.jaro.Author.Author;
-import pl.jaro.Category;
+import pl.jaro.Category.Category;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "articles")
 @Data
 @NoArgsConstructor
 public class Article {

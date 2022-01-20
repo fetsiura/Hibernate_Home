@@ -1,30 +1,52 @@
-insert into publishers (id, name) values (1, 'Helios');
-insert into publishers (id, name) values (2, 'Nowa Era');
-insert into publishers (id, name) values (3, 'New York Times');
-
-insert into authors (id, firstName, lastName,email, pesel) values (1, 'Karol', 'Nowicki','afa@gmail.com','66010123333');
-insert into authors (id, firstName, lastName,email, pesel) values (2, 'Stephen', 'King','afaaa@gmail.com','86010123333');
-insert into authors (id, firstName, lastName,email, pesel) values (3, 'Bruce', 'Eckel','lol@gmail.com','96010123333');
-
-insert into categories (name)values ('History');
-insert into categories (name)values ('Sport');
-insert into categories (name)values ('Science');
-insert into categories (name)values ('Money');
 
 
-insert into books ( title, rating, description, pages, publisher_id,category_id) values ( 'Harry Potter', 5, 'some',12,1,1)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ( 'Clean Code', 4, 'interesting',8,2,2)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ( 'The Five O''Clock Express', 6, 'interesting',8,3,3)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ( 'About our world', 3, 'interesting',5,1,1)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ('The Summer of Lost and Found', 3, 'interesting',8,1,4)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ( 'Six of Crows', 2, 'interesting',9,2,1)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ( 'The Bomber Mafia', 6, 'interesting',5,3,2)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ('Trouble at the Wedding', 7, 'interesting',3,1,3)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ('Just Friends', 8, 'interesting',2,2,4)
-insert into books (title, rating, description, pages,publisher_id,category_id) values ('That Summer', 9, 'interesting',11,3,1)
+insert into authors (id, name, surname) values (1, 'Karol', 'Bigris');
+insert into authors (id, name, surname) values (2, 'Michał', 'Nowicki');
+insert into authors (id, name, surname) values (3, 'Łukasz', 'Dudek');
 
-insert into persons (login, password, email) values ('linux', '1234', 'jaro@gmail.com')
-insert into persons (login, password, email) values ('windows', '4321', 'win@gmail.com')
+insert into categories (id, name, description) values (1, 'Sport', 'All about sport');
+insert into categories (id, name, description) values (2, 'Cooking', 'All about cooking');
+insert into categories (id, name, description) values (3, 'Science', 'All about science');
+insert into categories (id, name, description) values (4, 'Animal', 'All about Animal');
+insert into categories (id, name, description) values (5, 'Weather', 'All about Weather');
+insert into categories (id, name, description) values (6, 'Programing', 'All about Programing');
+insert into categories (id, name, description) values (7, 'War', 'All about War');
+insert into categories (id, name, description) values (8, 'Kibersecurity', 'All about Kibersecurity');
+insert into categories (id, name, description) values (9, 'Games', 'All about Games');
+insert into categories (id, name, description) values (10, 'Traveling', 'All about Traveling');
+
+
+
+insert into articles (content,created,title,updated, author_id) values ( 'some content 1','2020-01-01','content 1','2020-02-02',1)
+insert into articles (content,created,title,updated, author_id) values ( 'some content 2','2021-01-01','content 2','2021-02-02',2)
+insert into articles (content,created,title,updated, author_id) values ( 'some content 3','2022-01-01','content 3','2022-02-02',3)
+insert into articles (content,created,title,updated, author_id) values ( 'some content 4','2023-01-01','content 4','2023-02-02',1)
+insert into articles (content,created,title,updated, author_id) values ( 'some content 5','2024-01-01','content 5','2023-02-02',2)
+insert into articles (content,created,title,updated, author_id) values ( 'some content 6','2025-01-01','content 6','2023-02-02',3)
+
+insert into articles_categories (articles_id, categories_id) values (1,2)
+insert into articles_categories (articles_id, categories_id) values (1,5)
+insert into articles_categories (articles_id, categories_id) values (1,7)
+insert into articles_categories (articles_id, categories_id) values (1,3)
+insert into articles_categories (articles_id, categories_id) values (2,1)
+insert into articles_categories (articles_id, categories_id) values (2,4)
+insert into articles_categories (articles_id, categories_id) values (2,3)
+insert into articles_categories (articles_id, categories_id) values (2,2)
+insert into articles_categories (articles_id, categories_id) values (2,8)
+insert into articles_categories (articles_id, categories_id) values (2,10)
+insert into articles_categories (articles_id, categories_id) values (3,2)
+insert into articles_categories (articles_id, categories_id) values (3,6)
+insert into articles_categories (articles_id, categories_id) values (3,10)
+insert into articles_categories (articles_id, categories_id) values (4,9)
+insert into articles_categories (articles_id, categories_id) values (4,1)
+insert into articles_categories (articles_id, categories_id) values (4,2)
+insert into articles_categories (articles_id, categories_id) values (4,6)
+insert into articles_categories (articles_id, categories_id) values (5,6)
+insert into articles_categories (articles_id, categories_id) values (5,1)
+insert into articles_categories (articles_id, categories_id) values (5,8)
+insert into articles_categories (articles_id, categories_id) values (5,3)
+insert into articles_categories (articles_id, categories_id) values (6,1)
+insert into articles_categories (articles_id, categories_id) values (6,2)
 
 
 
