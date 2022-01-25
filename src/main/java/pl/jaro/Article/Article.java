@@ -2,7 +2,9 @@ package pl.jaro.Article;
 
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.jaro.Author.Author;
 import pl.jaro.Category.Category;
 
@@ -12,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "articles")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Article {
 
@@ -44,5 +47,14 @@ public class Article {
         updated = LocalDateTime.now();
     }
 
-
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
+    }
 }

@@ -14,6 +14,8 @@ insert into categories (id, name, description) values (7, 'War', 'All about War'
 insert into categories (id, name, description) values (8, 'Kibersecurity', 'All about Kibersecurity');
 insert into categories (id, name, description) values (9, 'Games', 'All about Games');
 insert into categories (id, name, description) values (10, 'Traveling', 'All about Traveling');
+insert into categories (id, name, description) values (11, 'Love', 'All about Love');
+insert into categories (id, name, description) values (12, 'Space', 'All about Space');
 
 
 
@@ -24,29 +26,18 @@ insert into articles (content,created,title,updated, author_id) values ( 'some c
 insert into articles (content,created,title,updated, author_id) values ( 'some content 5','2024-01-01','content 5','2023-02-02',2)
 insert into articles (content,created,title,updated, author_id) values ( 'some content 6','2025-01-01','content 6','2023-02-02',3)
 
-insert into articles_categories (articles_id, categories_id) values (1,2)
-insert into articles_categories (articles_id, categories_id) values (1,5)
-insert into articles_categories (articles_id, categories_id) values (1,7)
-insert into articles_categories (articles_id, categories_id) values (1,3)
-insert into articles_categories (articles_id, categories_id) values (2,1)
-insert into articles_categories (articles_id, categories_id) values (2,4)
-insert into articles_categories (articles_id, categories_id) values (2,3)
-insert into articles_categories (articles_id, categories_id) values (2,2)
-insert into articles_categories (articles_id, categories_id) values (2,8)
+insert into articles_categories (articles_id, categories_id) values (1,12)
+insert into articles_categories (articles_id, categories_id) values (1,11)
 insert into articles_categories (articles_id, categories_id) values (2,10)
-insert into articles_categories (articles_id, categories_id) values (3,2)
-insert into articles_categories (articles_id, categories_id) values (3,6)
-insert into articles_categories (articles_id, categories_id) values (3,10)
-insert into articles_categories (articles_id, categories_id) values (4,9)
-insert into articles_categories (articles_id, categories_id) values (4,1)
-insert into articles_categories (articles_id, categories_id) values (4,2)
+insert into articles_categories (articles_id, categories_id) values (2,9)
+insert into articles_categories (articles_id, categories_id) values (3,8)
+insert into articles_categories (articles_id, categories_id) values (3,7)
 insert into articles_categories (articles_id, categories_id) values (4,6)
-insert into articles_categories (articles_id, categories_id) values (5,6)
-insert into articles_categories (articles_id, categories_id) values (5,1)
-insert into articles_categories (articles_id, categories_id) values (5,8)
+insert into articles_categories (articles_id, categories_id) values (4,5)
+insert into articles_categories (articles_id, categories_id) values (5,4)
 insert into articles_categories (articles_id, categories_id) values (5,3)
-insert into articles_categories (articles_id, categories_id) values (6,1)
 insert into articles_categories (articles_id, categories_id) values (6,2)
+insert into articles_categories (articles_id, categories_id) values (6,1)
 
 
 

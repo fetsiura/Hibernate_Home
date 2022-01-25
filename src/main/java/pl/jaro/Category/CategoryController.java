@@ -6,9 +6,10 @@ import pl.jaro.Author.Author;
 import pl.jaro.Author.AuthorDao;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/articles")
+@RequestMapping("/categories")
 public class CategoryController {
 
     private CategoryDao categoryDao;
@@ -33,7 +34,7 @@ public class CategoryController {
         categoryDao.save(category);
     }
 
-    @PostMapping("/{id}/{name}")
+    @PostMapping("/{id}/{description}")
     @ResponseBody
     public void update(@PathVariable Long id,
                        @PathVariable String description){
@@ -47,5 +48,13 @@ public class CategoryController {
     public void delete (@PathVariable Long id){
 
         categoryDao.delete(id);
+    }
+
+    @GetMapping
+    @ResponseBody
+    public String findAll(){
+        return categoryDao.findAll().stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining());
     }
 }

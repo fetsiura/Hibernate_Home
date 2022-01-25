@@ -2,13 +2,12 @@ package pl.jaro.Author;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.jaro.Article.Article;
-import pl.jaro.Article.ArticleDao;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/articles")
+@RequestMapping("/authors")
 public class AuthorController {
 
     private AuthorDao authorDao;
@@ -47,5 +46,13 @@ public class AuthorController {
     public void delete (@PathVariable Long id){
 
         authorDao.delete(id);
+    }
+
+    @GetMapping
+    @ResponseBody
+    public String findAll(){
+        return authorDao.findAll().stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining());
     }
 }

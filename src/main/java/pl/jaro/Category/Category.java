@@ -1,13 +1,14 @@
 package pl.jaro.Category;
 
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 import javax.persistence.*;
 
 @Entity(name = "categories")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Category {
 
@@ -20,4 +21,14 @@ public class Category {
 
     @Column(nullable = true)
     private String description;
+
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

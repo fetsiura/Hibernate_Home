@@ -42,6 +42,7 @@ public abstract class GenericDao<T> {
     public List<T> findAll(){
         String question = "select entity from "+ entityClass.getSimpleName()+" entity";
         Query query = entityManager.createQuery(question);
+        System.out.println(query);
         return query.getResultList();
     }
 

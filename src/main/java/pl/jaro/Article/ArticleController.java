@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/articles")
@@ -46,5 +47,13 @@ public class ArticleController {
     public void delete (@PathVariable Long id){
 
         articleDao.delete(id);
+    }
+
+    @GetMapping
+    @ResponseBody
+    public String findAll(){
+       return articleDao.findAll().stream()
+               .map(Objects::toString)
+               .collect(Collectors.joining());
     }
 }
