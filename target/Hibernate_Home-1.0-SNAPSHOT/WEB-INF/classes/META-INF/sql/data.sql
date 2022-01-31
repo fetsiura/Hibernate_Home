@@ -1,8 +1,8 @@
 
 
 insert into authors (id, name, surname) values (1, 'Karol', 'Bigris');
-insert into authors (id, name, surname) values (2, 'Michał', 'Nowicki');
-insert into authors (id, name, surname) values (3, 'Łukasz', 'Dudek');
+insert into authors (id, name, surname) values (2, 'Michal', 'Nowicki');
+insert into authors (id, name, surname) values (3, 'Lukasz', 'Dudek');
 
 insert into categories (id, name, description) values (1, 'Sport', 'All about sport');
 insert into categories (id, name, description) values (2, 'Cooking', 'All about cooking');
