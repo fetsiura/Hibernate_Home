@@ -12,14 +12,14 @@
     </style>
 </head>
 <body>
-<form:form  method="post" modelAttribute="category">
-    Title:
+<form:form  method="post" modelAttribute="author">
+    Name:
     <form:input path="name" /> <br>
     <form:errors path="name" cssClass="my-error"/><br>
 
-    Description:
-    <form:input path="description" /><br>
-    <form:errors path="description" cssClass="my-error"/><br>
+    Surname:
+    <form:input path="surname" /><br>
+    <form:errors path="surname" cssClass="my-error"/><br>
 
 
     <input type="submit" value="Save">

@@ -16,6 +16,8 @@ insert into categories (id, name, description) values (9, 'Games', 'All about Ga
 insert into categories (id, name, description) values (10, 'Traveling', 'All about Traveling');
 insert into categories (id, name, description) values (11, 'Love', 'All about Love');
 insert into categories (id, name, description) values (12, 'Space', 'All about Space');
+insert into categories (id, name, description) values (13, 'Special', 'All about Special');
+insert into categories (id, name, description) values (14, 'Special2', 'All about Special2');
 
 
 

@@ -1,8 +1,17 @@
 package pl.jaro.Article;
 
+import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.jaro.Author.Author;
+import pl.jaro.Author.AuthorRepository;
+import pl.jaro.Category.Category;
+import pl.jaro.Category.CategoryRepository;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -10,50 +19,71 @@ import java.util.stream.Collectors;
 @RequestMapping("/articles")
 public class ArticleController {
 
-    private ArticleDao articleDao;
+    private final ArticleRepository articleRepository;
+    private final AuthorRepository authorRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ArticleController(ArticleDao articleDao) {
-        this.articleDao = articleDao;
+    public ArticleController(ArticleRepository articleRepository, AuthorRepository authorRepository, CategoryRepository categoryRepository) {
+        this.articleRepository = articleRepository;
+        this.authorRepository = authorRepository;
+        this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("/{id}")
-    @ResponseBody
-    public String get(@PathVariable Long id){
+    @GetMapping("/form")
+    public String getForm(Model model){
+        model.addAttribute("article",new Article());
+        return "/article/create";
 
-       return articleDao.find(id)
-               .map( Objects::toString)
-               .orElse("article not exist");
     }
 
 
-    @PostMapping
-    public void create(@RequestBody Article article){
+    @PostMapping("/form")
+    public String createProcess(@Valid Article article, BindingResult result){
 
-        articleDao.save(article);
+        if(result.hasErrors()){
+            return "/article/create";
+        }
+        articleRepository.save(article);
+        return "redirect:/articles";
     }
 
-    @PostMapping("/{id}/{title}")
-    @ResponseBody
-    public void update(@PathVariable Long id,
-                       @PathVariable String title){
+    @GetMapping("/edit/{id}")
+    public String getEditForm(@PathVariable Long id,Model model){
 
-        Article article = articleDao.find(id).orElseThrow(RuntimeException::new);
-        article.setTitle(title);
-        articleDao.merge(article);
+        model.addAttribute("article",articleRepository.findByIdWithCategories(id).orElseThrow());
+        return "/article/edit";
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseBody
-    public void delete (@PathVariable Long id){
+    @PostMapping("/update")
+    public String update(@Valid Article article,
+                         BindingResult result){
+        if(result.hasErrors()){
+            return "/article/edit";
+        }
 
-        articleDao.delete(id);
+        articleRepository.save(article);
+        return "redirect:/articles";
+
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete (@PathVariable Long id){
+        articleRepository.deleteById(id);
+        return"redirect:/articles";
     }
 
     @GetMapping
-    @ResponseBody
-    public String findAll(){
-       return articleDao.findAll().stream()
-               .map(Objects::toString)
-               .collect(Collectors.joining());
+    public String findAll(Model model){
+        model.addAttribute("articles",articleRepository.findAll());
+        return "/article/articlesPage";
+    }
+
+    @ModelAttribute("authors")
+    List<Author> authors(){
+        return authorRepository.findAll();
+    }
+    @ModelAttribute("categories")
+    List<Category> categories(){
+        return categoryRepository.findAll();
     }
 }

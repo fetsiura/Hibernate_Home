@@ -1,8 +1,14 @@
 package pl.jaro.Author;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.jaro.Article.Article;
+import pl.jaro.Article.ArticleRepository;
+import pl.jaro.Category.CategoryRepository;
 
+import javax.validation.Valid;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -10,49 +16,62 @@ import java.util.stream.Collectors;
 @RequestMapping("/authors")
 public class AuthorController {
 
-    private AuthorDao authorDao;
+    private final ArticleRepository articleRepository;
+    private final AuthorRepository authorRepository;
+    private final CategoryRepository categoryRepository;
 
-    public AuthorController(AuthorDao authorDao) {
-        this.authorDao = authorDao;
+    public AuthorController(ArticleRepository articleRepository, AuthorRepository authorRepository, CategoryRepository categoryRepository) {
+        this.articleRepository = articleRepository;
+        this.authorRepository = authorRepository;
+        this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("/{id}")
-    @ResponseBody
-    public String get(@PathVariable Long id){
+    @GetMapping("/form")
+    public String getForm(Model model){
+        model.addAttribute("author",new Author());
+        return "/author/create";
 
-       return authorDao.find(id)
-               .map( Objects::toString)
-               .orElse("author not exist");
     }
 
 
-    @PostMapping
-    public void create(@RequestBody Author author){
+    @PostMapping("/form")
+    public String createProcess(@Valid Author author, BindingResult result){
 
-        authorDao.save(author);
+        if(result.hasErrors()){
+            return "/author/create";
+        }
+        authorRepository.save(author);
+        return "redirect:/authors";
     }
 
-    @PostMapping("/{id}/{name}")
-    @ResponseBody
-    public void update(@PathVariable Long id,
-                       @PathVariable String name){
-        Author author = authorDao.find(id).orElseThrow(RuntimeException::new);
-        author.setName(name);
-        authorDao.merge(author);
+    @GetMapping("/edit/{id}")
+    public String getEditForm(@PathVariable Long id,Model model){
+
+        model.addAttribute("author",authorRepository.findById(id).orElseThrow());
+        return "/author/edit";
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseBody
-    public void delete (@PathVariable Long id){
+    @PostMapping("/update")
+    public String update(@Valid Author author,
+                         BindingResult result){
+        if(result.hasErrors()){
+            return "/author/edit";
+        }
 
-        authorDao.delete(id);
+        authorRepository.save(author);
+        return "redirect:/authors";
+
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete (@PathVariable Long id){
+        authorRepository.deleteById(id);
+        return"redirect:/authors";
     }
 
     @GetMapping
-    @ResponseBody
-    public String findAll(){
-        return authorDao.findAll().stream()
-                .map(Objects::toString)
-                .collect(Collectors.joining());
+    public String findAll(Model model){
+        model.addAttribute("authors",authorRepository.findAll());
+        return "/author/authorsPage";
     }
 }

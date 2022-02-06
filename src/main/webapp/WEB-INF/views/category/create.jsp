@@ -15,9 +15,12 @@
 <form:form  method="post" modelAttribute="category">
     Title:
     <form:input path="name" /> <br>
+    <form:errors path="name" cssClass="my-error"/><br>
 
     Description:
     <form:input path="description" /><br>
+    <form:errors path="description" cssClass="my-error"/><br>
+
 
     <input type="submit" value="Save">
 </form:form>
